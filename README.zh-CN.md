@@ -1,0 +1,67 @@
+# DeckCraft Use
+
+> DeckCraft 的 Agent Plugin 最小候选包。包结构已创建；宿主加载和原生调用尚未验证。
+
+[English](README.md) | 简体中文 · [架构](docs/DeckCraft-Plugin-Architecture.zh_CN.md) · [验证](docs/verification.md)
+
+## 项目定位
+
+让 Agent 宿主加载 DeckCraft 操作技能，并通过上游已有 MCP 服务端制作、检查和导出演示文稿。本仓目标是可移植插件包，不重写 DeckCraft、MCP 服务器或宿主运行时。
+
+```text
+用户任务 → 宿主加载插件 Skills → 宿主连接 deckcraft-cli mcp
+       → DeckCraft 编辑 / inspect / render / export → 宿主交付结果
+```
+
+| 属性 | 当前状态（2026-10-09） |
+|---|---|
+| 格式目标 | Agent Plugins 1.0.0 |
+| 插件版本、远端、已验证宿主 | `0.1.0-dev.0`；无远端或已验证宿主 |
+| 根 `plugin.json`、`mcp.json`、`skills/` | 已创建，待宿主验证 |
+| 包内技能 | 1 个 `deckcraft-use`；与本地 deckcraft-skills 源文件一致 |
+| 许可证 | Apache-2.0；DeckCraft 上游 MIT OR Apache-2.0 |
+
+## 插件组成
+
+可移植核心是根 `plugin.json`，以及按需存在的 `skills/` 和 `mcp.json`。Skills 承载路由与操作知识；`mcp.json` 连接现有 `deckcraft-cli mcp`。命令和 Hooks 属于具体客户端扩展，只有真实宿主场景需要且已验证其格式时才加入。规范只定义 Skills、MCP servers 两类可移植组件。[正式规范](https://agent-plugins.org/specification)
+
+## 能力与边界
+
+| 目标 | 所有者 | 验收 |
+|---|---|---|
+| 操作路由、命令参考 | Skills | 触发与单独安装场景 |
+| 权限、工具执行、MCP 生命周期 | 宿主 | 实际加载和调用 |
+| 文稿编辑、撤销、渲染、导出 | DeckCraft | 真实文稿回读与重开 |
+| 包装与来源固定 | 插件 | manifest、路径、技能摘要和安装检查 |
+
+上游 Remote 可能在通信错误后重发修改；本插件初版不承诺异常场景恰好执行一次。Headless 没有整窗截图。PDF 图稿目前是栅格加真实文本层。真实 PPTX 兼容性需独立语料验收。[兼容性](docs/compatibility.md)
+
+## 本地候选与快速开始
+
+本地候选可供支持 Agent Plugins 1.0.0 的宿主从本目录加载。尚无公开发行或宿主验证；MCP 需要宿主能找到已安装的 `deckcraft-cli`。可先运行以下只读检查：
+
+```bash
+deckcraft-cli --version
+deckcraft-cli commands
+deckcraft-cli describe slide.new
+```
+
+根 `mcp.json` 使用单一 `deckcraft-cli` 命令 token 和 `mcp` 参数；本仓不安装 CLI。桌面 Remote、窗口截图、客户端命令和 Hooks 均需分别验证，不是默认能力。[MCP 指南](https://agent-plugins.org/plugin-authors/mcp-servers)
+
+## 设计与交付
+
+[中文架构](docs/DeckCraft-Plugin-Architecture.zh_CN.md) / [English architecture](docs/DeckCraft-Plugin-Architecture.md) 明确组成和责任；[操作边界](docs/operation-contract.md) 记录命令、Hooks 与失败语义；[Dreamina 借鉴](docs/dreamina-reference-analysis.md) 说明保留与裁剪理由。[路线](ROADMAP.md) 和 [验证矩阵](docs/verification.md) 将结构、宿主和真实文稿证据分开。
+
+静态包检查与实际宿主、MCP 握手、真实 DeckCraft 调用分开记录。参见 [贡献](CONTRIBUTING.md)、[安全](SECURITY.md)、[来源](ATTRIBUTION.md) 和 [Apache-2.0](LICENSE)。
+
+## 场景技能开发候选
+
+已增加 6 个领域场景技能及 1 个内嵌编辑器入口。详见 [场景目录](docs/scene-skills.md)。本地未发布候选，不代表全部场景的创作质量已验收。
+
+## 内嵌编辑器候选
+
+新增 MCP Apps 与宿主浏览器接入，详见 [配置与构建](docs/editor-integration.md)。`ui/dist/` 为本地生成物；首次分发须带齐生成物。
+
+插件展示使用上游官方图标；名称为 **DeckCraft Use**。图标来源与许可证保存在 `assets/official-icon-source.json` 和相邻 LICENSE 文件中。
+
+源码增强候选采用 `ui/source.lock.json` 与 `ui/build-source.py`；兼容更新查询本插件自有 GitHub Releases，失败回退内置，原版 Web 不替换增强自动化运行时。当前会话保留；宿主安装验收另行记录。

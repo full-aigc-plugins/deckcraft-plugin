@@ -1,0 +1,67 @@
+# DeckCraft Use
+
+> Minimal DeckCraft Agent Plugin candidate. Package files exist; host loading and native calls remain unverified.
+
+English | [简体中文](README.zh-CN.md) · [Architecture](docs/DeckCraft-Plugin-Architecture.md) · [Verification](docs/verification.md)
+
+## Positioning
+
+Let an Agent host load DeckCraft operation skills and use the existing upstream MCP server to author, inspect and export presentations. The target is a portable plugin package, without replacing DeckCraft, its MCP server or the host runtime.
+
+```text
+User task → host loads plugin Skills → host connects deckcraft-cli mcp
+          → DeckCraft edit / inspect / render / export → host delivers results
+```
+
+| Property | Current status (2026-10-09) |
+|---|---|
+| Target format | Agent Plugins 1.0.0 |
+| Plugin version, remote, verified hosts | `0.1.0-dev.0`; no remote or verified host |
+| Root `plugin.json`, `mcp.json`, `skills/` | Present; host verification pending |
+| Bundled skills | One `deckcraft-use` skill, identical to the local deckcraft-skills source |
+| License | Apache-2.0 here; upstream DeckCraft MIT OR Apache-2.0 |
+
+## Plugin components
+
+The portable core is root `plugin.json`, with optional `skills/` and `mcp.json`. Skills hold routing and operational knowledge; `mcp.json` connects the existing `deckcraft-cli mcp`. Commands and Hooks are client extensions and should be added only for a tested host need. The specification defines only Skills and MCP servers as portable components. See the [official specification](https://agent-plugins.org/specification).
+
+## Capabilities and boundaries
+
+| Goal | Owner | Acceptance |
+|---|---|---|
+| Routing and command guidance | Skills | Trigger and isolated installation scenarios |
+| Authorization, tool execution and MCP lifecycle | Host | Actual loading and calls |
+| Deck editing, undo, rendering and export | DeckCraft | Real deck readback and reopening |
+| Packaging and source pinning | Plugin | Manifest, paths, skill hashes and installation checks |
+
+Upstream Remote may resend a mutation after communication failure; this initial plugin cannot promise exactly-once execution across failures. Headless has no window screenshot. Current PDF artwork is raster with a real-text layer. Real-world PPTX compatibility needs separate corpus checks. See [compatibility](docs/compatibility.md).
+
+## Local candidate and quick start
+
+The local candidate can be loaded from this directory by a host supporting Agent Plugins 1.0.0. It has no public release or verified host. MCP requires an installed `deckcraft-cli` on the host PATH. The following read-only checks can be used first:
+
+```bash
+deckcraft-cli --version
+deckcraft-cli commands
+deckcraft-cli describe slide.new
+```
+
+Root `mcp.json` uses the single `deckcraft-cli` executable token with `mcp` as a separate argument. This repository does not install the CLI. Desktop Remote, window screenshots, client commands and Hooks need separate verification. See the [MCP guide](https://agent-plugins.org/plugin-authors/mcp-servers).
+
+## Design and delivery
+
+[English architecture](docs/DeckCraft-Plugin-Architecture.md) / [中文架构](docs/DeckCraft-Plugin-Architecture.zh_CN.md) defines composition and responsibilities. [Operation boundaries](docs/operation-contract.md) covers commands, Hooks and failures. [Dreamina lessons](docs/dreamina-reference-analysis.md) explain retained and rejected patterns. [Roadmap](ROADMAP.md) and [verification](docs/verification.md) separate structure, host and real-deck evidence.
+
+Static package checks, host installation, MCP handshake and real DeckCraft operations are reported separately. See [contribution](CONTRIBUTING.md), [security](SECURITY.md), [attribution](ATTRIBUTION.md) and [Apache-2.0](LICENSE).
+
+## 场景技能开发候选
+
+已增加 6 个领域场景技能及 1 个内嵌编辑器入口。详见 [场景目录](docs/scene-skills.md)。本地未发布候选，不代表全部场景的创作质量已验收。
+
+## 内嵌编辑器候选
+
+新增 MCP Apps 与宿主浏览器接入，详见 [配置与构建](docs/editor-integration.md)。`ui/dist/` 为本地生成物；首次分发须带齐生成物。
+
+Plugin display name: **DeckCraft Use**. Official upstream icon provenance and licenses are included under `assets/official-icon-source.json` and adjacent LICENSE files.
+
+源码增强候选采用 `ui/source.lock.json` 与 `ui/build-source.py`；兼容更新查询本插件自有 GitHub Releases，失败回退内置，原版 Web 不替换增强自动化运行时。当前会话保留；宿主安装验收另行记录。
