@@ -8,27 +8,27 @@
     },
     {
       "name": "deckcraft-pitch-deck",
-      "sha256": "243080ef95ba46fbbb720b410639e854b4662063b5dec28263be2fdf659e1b9e"
+      "sha256": "2b51345fa073f4151419b9bfd2e9ccbea17eb28b9213c7c14fbbfb4d3edfc3fd"
     },
     {
       "name": "deckcraft-weekly-report",
-      "sha256": "9d597ec897f763de093e8aedcd1eb6200856501891e01db2fc24fef291e4c234"
+      "sha256": "d1d15a51e690e3e7f9d12847c2b43374060fe52682a6c5b08b0508dc8c898fc4"
     },
     {
       "name": "deckcraft-training-slides",
-      "sha256": "b2709f0d472d2cd83a1822aedaf5669b68904d16019f541090cfca37869b2a96"
+      "sha256": "abcff14227ac3582a2baf4b8bbd29c56cc68702ee2a98386b73c8db5d3fa8a62"
     },
     {
       "name": "deckcraft-data-story",
-      "sha256": "790cd04910082c57d4d6d43c310788db66f544b69b70f3f3d54cf7d0ae76959a"
+      "sha256": "5f842dfd538acea73f809affb4a7f7c7dbdd46fba10e55d672d95d4919ea7fdf"
     },
     {
       "name": "deckcraft-brand-template",
-      "sha256": "dec25540bd5d579d3afe9cf68ab9d5426559aae80be5a3ac33823ea8de9b44da"
+      "sha256": "856aaedbd3518ecba3c91b9c1d5ed3ace11d5d0d0dc1fa65a962169f42b9b198"
     },
     {
       "name": "deckcraft-slide-redesign",
-      "sha256": "d0df44640e30f26ccf10abe964151d8a18682b716f9147e707f75abceaac64e7"
+      "sha256": "9b2fc6b6db67d14bc2bb364e0907fc783770a390771109be2a68b2ceeb9b7733"
     }
   ]
 }
