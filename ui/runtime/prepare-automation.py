@@ -49,9 +49,8 @@ def file_bridge():
 
 file_bridge()
 if name == 'deckcraft':
-    replace('crates/engine/src/cmd/file.rs', '#[cfg(not(target_arch = "wasm32"))]\nfn open(s: &mut Session, p: &Value) -> Result<Value> {', 'fn open(s: &mut Session, p: &Value) -> Result<Value> {')
-    replace('crates/engine/src/cmd/file.rs', '#[cfg(target_arch = "wasm32")]\nfn open(_s: &mut Session, _p: &Value) -> Result<Value> {\n    Err(EngineError::Other("use file.openBytes in the browser".into()))\n}\n', '')
-    replace('crates/engine/src/cmd/file.rs', 'fn write_file(_path: &str, _bytes: &[u8]) -> Result<()> {\n    Err(EngineError::Other("saving to a path is not available in the browser".into()))\n}', 'fn write_file(path: &str, bytes: &[u8]) -> Result<()> {\n    // 浏览器提交字节，宿主负责工作区路径校验和原子落盘。\n    crate::craft_fs::write(path, bytes).map_err(|e| EngineError::Other(format!("{path}: {e}")))\n}')
+    from deck_file_bridge import patch_files
+    patch_files(root, replace)
 
 if name == 'photocraft':
     path='crates/engine/src/file_cmds.rs'
