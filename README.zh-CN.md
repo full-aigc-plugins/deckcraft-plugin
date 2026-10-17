@@ -1,5 +1,10 @@
 # DeckCraft Use
 
+## Installable editor development candidate
+
+`0.1.0-dev.20261017.1` is distributed through the Full AIGC plugin marketplace as a development prerelease. Node.js 24 is required. Git installations use `ui/bootstrap.mjs` to download and verify the pinned editor archive on first start; complete release ZIPs also include that archive unpacked for offline startup. No Rust build or npm installation is required. Startup diagnostics use stderr; stdio remains MCP-only. The editor shares its session with Agent commands. Full creative quality and all-host embedded UI acceptance are still incomplete. Existing dated validation below describes its original version.
+
+
 > DeckCraft 的 Agent Plugin 最小候选包。包结构已创建；宿主加载和原生调用尚未验证。
 
 [English](README.md) | 简体中文 · [架构](docs/DeckCraft-Plugin-Architecture.zh_CN.md) · [验证](docs/verification.md)
