@@ -9,6 +9,29 @@ spec.loader.exec_module(bridge)
 
 
 class FileOverlayTest(unittest.TestCase):
+    def test_legacy_inline_writer(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            p = root / 'crates/engine/src/cmd/file.rs'
+            p.parent.mkdir(parents=True)
+            p.write_text('''#[cfg(not(target_arch = "wasm32"))]
+fn open(s: &mut Session, p: &Value) -> Result<Value> {}
+#[cfg(target_arch = "wasm32")]
+fn open(_s: &mut Session, _p: &Value) -> Result<Value> {
+    Err(EngineError::Other("use file.openBytes in the browser".into()))
+}
+fn write_file(_path: &str, _bytes: &[u8]) -> Result<()> {
+    Err(EngineError::Other("saving to a path is not available in the browser".into()))
+}''')
+            def replace(name, old, new):
+                path = root / name
+                text = path.read_text()
+                self.assertEqual(text.count(old), 1)
+                path.write_text(text.replace(old, new, 1))
+            bridge.patch_files(root, replace)
+            self.assertIn('crate::craft_fs::write(path, bytes)', p.read_text())
+            self.assertNotIn('fn open(_s:', p.read_text())
+
     def test_main_io(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
