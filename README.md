@@ -102,3 +102,7 @@ Training, redesign, brand templates, weekly reports, pitches and data stories no
 ### 候选启动修正
 
 本候选先完成轻量MCP握手及能力发现，在首次工具或资源调用时校验/获取固定编辑器资源。修复多个编辑器首次下载阻塞宿主握手的问题。Windows通过Git安装时须启用Git长路径支持（`git config --global core.longpaths true`）；完整ZIP不包含历史验收记录，可避免Git检出长路径的问题。运行资源沿用已核验的dev.20261017.2制品，不以入口版本号冒充上游升级。
+
+## 方案评审对比表开发候选
+
+新增 `deckcraft-option-comparison` 独立技能入口，深化已有比较表流程：显式表格ID、逐格数据口径、完整列宽及PPTX重开改单元格。参考PptxGenJS固定GitHub提交的表格工作流，步骤及Craft参数原创；本地官方0.7.0 CLI结构与回读通过，尚未随主市场发行，不代表Windows、真实素材或宿主同步已验收。
