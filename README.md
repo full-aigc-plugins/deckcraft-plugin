@@ -13,7 +13,7 @@ This plugin belongs to **AIGC content creation**.
 
 > Author, inspect and export a real presentation from your agent host — one slide at a time, with the editable source deck kept as the deliverable.
 
-[![Version](https://img.shields.io/badge/release-0.1.0--dev.20261018.4-1A73E8)](https://github.com/full-aigc-plugins/deckcraft-plugin/releases)
+[![Version](https://img.shields.io/badge/release-0.1.0--dev.20261019.1-1A73E8)](https://github.com/full-aigc-plugins/deckcraft-plugin/releases)
 [![Skills](https://img.shields.io/badge/skills-10-00A67E)](#skills)
 [![MCP tools](https://img.shields.io/badge/MCP%20tools-33-00A67E)](#mcp-tools)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
