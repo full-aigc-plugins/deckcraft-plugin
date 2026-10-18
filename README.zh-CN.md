@@ -13,7 +13,7 @@
 
 > 在智能体宿主里撰写、检查并导出真实演示文稿——逐页推进，交付物始终是可继续编辑的源文稿。
 
-[![版本](https://img.shields.io/badge/release-0.1.0--dev.20261018.4-1A73E8)](https://github.com/full-aigc-plugins/deckcraft-plugin/releases)
+[![版本](https://img.shields.io/badge/release-0.1.0--dev.20261019.1-1A73E8)](https://github.com/full-aigc-plugins/deckcraft-plugin/releases)
 [![技能](https://img.shields.io/badge/skills-10-00A67E)](#技能)
 [![MCP 工具](https://img.shields.io/badge/MCP%20tools-33-00A67E)](#mcp-工具)
 [![许可证](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
