@@ -4,10 +4,12 @@
   "skills": "./skills/",
   "mcpServers": "./.codex-plugin/mcp.json",
   "interface": {
-    "displayName": "DeckCraft Use",
+    "displayName": "DeckCraft · Presentations",
     "logo": "./assets/official-logo.png",
     "logoDark": "./assets/official-logo.png",
     "composerIcon": "./assets/official-logo.png",
-    "composerIconDark": "./assets/official-logo.png"
-  }
+    "composerIconDark": "./assets/official-logo.png",
+    "shortDescription": "Pitches, weekly reports, training decks and option comparisons"
+  },
+  "description": "Pitch decks, weekly reports, training material, data stories and option comparisons. Masters, layouts and speaker notes stay editable after export."
 }
