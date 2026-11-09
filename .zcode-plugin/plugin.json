@@ -1,10 +1,10 @@
 {
   "name": "deckcraft",
-  "version": "0.1.0-dev.20261019.1",
-  "description": "项目路演、工作周报、培训课件、数据叙事与方案对比；母版、版式与讲稿同源，导出后可继续修改。",
+  "version": "0.1.0-dev.20261109.1",
+  "description": "Pitch decks, weekly reports, training material, data stories and option comparisons. Masters, layouts and speaker notes stay editable after export.",
   "license": "Apache-2.0",
   "skills": "./skills/",
-  "displayName": "DeckCraft（演示文稿）",
+  "displayName": "DeckCraft",
   "icon": "./assets/official-logo.png",
   "mcpServers": {
     "deckcraft-editor": {
@@ -21,15 +21,16 @@
     }
   },
   "displayName_i18n": {
-    "zh-CN": "DeckCraft（演示文稿）"
+    "en": "DeckCraft",
+    "zh-CN": "DeckCraft"
   },
   "ui": {
     "surfaces": [
       {
         "id": "editor",
         "title": {
-          "en-US": "DeckCraft (Presentations)",
-          "zh-CN": "DeckCraft（演示文稿）"
+          "en-US": "DeckCraft",
+          "zh-CN": "DeckCraft"
         },
         "icon": "presentation",
         "server": "deckcraft-editor",
