@@ -8,7 +8,7 @@
 
     - id: mcp-deckcraft-deckcraft-editor
       name: '@deepseek-ai/dsh-mcp-client'
-      disabled: !!js "!process.env.DSH_MCP_DECKCRAFT"
+      disabled: !!js "process.env.DSH_MCP_DECKCRAFT === '0'"
       config:
         serverName: "deckcraft-editor"
         toolCallTimeoutMs: 60000
