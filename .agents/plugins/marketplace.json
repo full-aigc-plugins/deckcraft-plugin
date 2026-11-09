@@ -20,7 +20,11 @@
         "authentication": "ON_USE"
       },
       "category": "Productivity",
-      "description": "Pitch decks, weekly reports, training material, data stories and option comparisons. Masters, layouts and speaker notes stay editable after export."
+      "description": "Pitch decks, weekly reports, training material, data stories and option comparisons. Masters, layouts and speaker notes stay editable after export.",
+      "line": "full-aigc",
+      "componentTypes": [
+        "ui"
+      ]
     }
   ],
   "interface": {
